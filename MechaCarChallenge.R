@@ -23,3 +23,19 @@ psi = Suspension_Coil_DF$PSI
 total_summary <- Suspension_Coil_DF  %>%
   summarize(Mean=mean(psi),Median=median(psi),Variance=var(psi),SD=sd(psi), .groups = 'keep')  #psi
 lot_summary <- Suspension_Coil_DF  %>% group_by(Manufacturing_Lot) %>% summarise(Mean=mean(psi),Median=median(psi),Variance=var(psi),SD=sd(psi), .groups = 'keep')  
+
+# Deliverable 3 T-tests
+#t.test(log10(sample_table$Miles_Driven),mu=mean(log10(population_table$Miles_Driven))
+summary_table <- Suspension_Coil_DF %>% sample_n(50) 
+t.test(log10(summary_table$PSI),log10(Suspension_Coil_DF$PSI))
+
+mfglot1 = subset(Suspension_Coil_DF, Manufacturing_Lot == 'Lot1')
+#mean(population1[['PSI']])
+t.test(log10(mfglot1$PSI),log10(Suspension_Coil_DF$PSI))
+
+mfglot2 = subset(Suspension_Coil_DF, Manufacturing_Lot == 'Lot2')
+#mean(population2[['PSI']])
+t.test(log10(mfglot2$PSI),log10(Suspension_Coil_DF$PSI))
+
+mfglot3 = subset(Suspension_Coil_DF, Manufacturing_Lot == 'Lot3')
+t.test(log10(mfglot3$PSI),log10(Suspension_Coil_DF$PSI))
